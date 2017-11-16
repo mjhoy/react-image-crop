@@ -1133,7 +1133,10 @@ var ReactCrop = function (_PureComponent) {
           onTouchStart: this.onComponentMouseTouchDown,
           onMouseDown: this.onComponentMouseTouchDown,
           tabIndex: '1',
-          onKeyDown: this.onComponentKeyDown
+          onKeyDown: this.onComponentKeyDown,
+          onChange: function onChange(crop) {
+            _this3.setState({ crop: crop });
+          }
         },
         _react2.default.createElement('img', {
           ref: function ref(n) {
