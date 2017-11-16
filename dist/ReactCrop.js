@@ -666,7 +666,7 @@ var ReactCrop = function (_PureComponent) {
       };
 
       _this.mouseDownOnCrop = true;
-      onChange(nextCrop, _this.getPixelCrop(nextCrop));
+      onChange(_this, nextCrop, _this.getPixelCrop(nextCrop));
       _this.setState({ cropIsActive: true });
     }, _this.onDocMouseTouchMove = function (e) {
       var _this$props3 = _this.props,
@@ -709,7 +709,7 @@ var ReactCrop = function (_PureComponent) {
         nextCrop = _this.dragCrop();
       }
 
-      onChange(nextCrop, _this.getPixelCrop(nextCrop));
+      onChange(_this, nextCrop, _this.getPixelCrop(nextCrop));
     }, _this.onComponentKeyDown = function (e) {
       var _this$props4 = _this.props,
           crop = _this$props4.crop,
@@ -1133,10 +1133,7 @@ var ReactCrop = function (_PureComponent) {
           onTouchStart: this.onComponentMouseTouchDown,
           onMouseDown: this.onComponentMouseTouchDown,
           tabIndex: '1',
-          onKeyDown: this.onComponentKeyDown,
-          onChange: function onChange(crop) {
-            _this3.setState({ crop: crop });
-          }
+          onKeyDown: this.onComponentKeyDown
         },
         _react2.default.createElement('img', {
           ref: function ref(n) {
@@ -1218,7 +1215,10 @@ ReactCrop.defaultProps = {
   onImageLoaded: function onImageLoaded() {},
   onDragStart: function onDragStart() {},
   onDragEnd: function onDragEnd() {},
-  children: undefined
+  children: undefined,
+  onChange: function onChange(obj, crop) {
+    obj.setState({ crop: crop });
+  }
 };
 
 module.exports = ReactCrop;
